@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Credit;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,13 @@ namespace Ninject.ConsoleApp
     {
         static void Main(string[] args)
         {
+            var kerner = new StandardKernel();
+            kerner.Bind<ICreditCard>().To<MasterCard>();
+
+            var shopper = kerner.Get<Shopper>();
+
+            Console.WriteLine(shopper.Charge());
+            Console.Read();
         }
     }
 }
